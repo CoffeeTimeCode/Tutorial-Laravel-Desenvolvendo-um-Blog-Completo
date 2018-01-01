@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 
 /**Models**/
 use App\User;
+use Auth;
 
 class UserController extends Controller
 {
@@ -51,5 +52,41 @@ class UserController extends Controller
     {
       User::find($id)->delete();
       return back()->with('msg','Usuário Deletado Com Sucesso.');
+    }
+
+    public function config()
+    {
+      return view('usuarios.user.config');
+    }
+
+    public function config_update(Request $request)
+    {
+      switch ($request->input('tipo')) {
+        case 'avatar':
+          # code...
+          break;
+
+        case 'n.e.d':
+          # code...
+          break;
+
+        case 'senha':
+          $request->validate([
+            'senha_atual' => 'required|string|min:6',
+            'password' => 'required|string|min:6|confirmed',
+          ]);
+
+          if(password_verify($request->input('senha_atual'),Auth::user()->password)){
+            $user = Auth::user();
+            $user->password = bcrypt($request->input('password'));
+            $user->save();
+
+            return back()->with('msg', 'Senha Alterada com Sucesso.');
+          }else{
+            return back()->with('erro', 'Senha Atual não é compatível.');
+          }
+
+          break;
+      }
     }
 }

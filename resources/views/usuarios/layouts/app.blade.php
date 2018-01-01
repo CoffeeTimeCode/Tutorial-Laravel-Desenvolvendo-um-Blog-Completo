@@ -77,6 +77,7 @@
               <li class="list-group-item"><h4 class="text-center">Menu</h4></li>
               @if(Auth::user()->level>=0)
                 <!--<li class="list-group-item text-center">Usuário: Leitor</li>-->
+                <li class="list-group-item"> <a href="{!! url('/painel/configuracoes') !!}">-> Configurações</a> </li>
               @endif
               @if(Auth::user()->level>=1)
                 <!--<li class="list-group-item text-center">Usuário: Revisor</li>-->
