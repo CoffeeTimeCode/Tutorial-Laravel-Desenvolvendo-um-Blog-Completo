@@ -67,7 +67,19 @@ class UserController extends Controller
           break;
 
         case 'n.e.d':
-          # code...
+          $user = Auth::user();
+          if(!is_null($request->input('nome'))){
+            $user->name = $request->input('nome');
+          }
+          if(!is_null($request->input('email'))){
+            $user->email = $request->input('email');
+          }
+          if(!is_null($request->input('descricao'))){
+            $user->descricao = $request->input('descricao');
+          }
+          $user->save();
+          
+          return back()->with('msg', 'Alteração realizada com Sucesso.');
           break;
 
         case 'senha':

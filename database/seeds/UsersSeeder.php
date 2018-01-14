@@ -17,6 +17,8 @@ class UsersSeeder extends Seeder
             'email' => 'leitor@leitor.com',
             'password' => bcrypt('123456'),
             'level' => 0,
+            'avatar' => url('/avatar-icon.png'),
+            'descricao' => 'Eu sou uma Descrição',
             'created_at' => Carbon\Carbon::now(),
           ],
           [
@@ -24,6 +26,8 @@ class UsersSeeder extends Seeder
             'email' => 'revisor@revisor.com',
             'password' => bcrypt('123456'),
             'level' => 1,
+            'avatar' => url('/avatar-icon.png'),
+            'descricao' => 'Eu sou uma Descrição',
             'created_at' => Carbon\Carbon::now(),
           ],
           [
@@ -31,6 +35,8 @@ class UsersSeeder extends Seeder
             'email' => 'admin@admin.com',
             'password' => bcrypt('123456'),
             'level' => 2,
+            'avatar' => url('/avatar-icon.png'),
+            'descricao' => 'Eu sou uma Descrição',
             'created_at' => Carbon\Carbon::now(),
           ],
         ]);

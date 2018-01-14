@@ -43,22 +43,28 @@
 
   <!--Alterar N.E.D-->
   <div class="col-md-8">
-    <div class="form-group">
-      <label>Nome: </label>
-      <input type="text" class="form-control" placeholder="Nome...">
-    </div>
+    <form class="" action="{!! url()->current() !!}" method="post">
+      {!! csrf_field() !!}
+      <input type="hidden" name="tipo" value="n.e.d">
 
-    <div class="form-group">
-      <label>Email: </label>
-      <input type="email" class="form-control" placeholder="Email...">
-    </div>
+      <div class="form-group">
+        <label>Nome: </label>
+        <input type="text" class="form-control" placeholder="{!! Auth::user()->name !!}" name="nome">
+      </div>
 
-    <div class="form-group">
-      <label>Descrição: </label>
-      <textarea type="text" class="form-control" placeholder="Descrição..."></textarea>
-    </div>
-    Salvar Alteração de Nome, Email e Descrição ->
-    <button type="submit" name="button" class="btn btn-success"> <span class="glyphicon glyphicon-floppy-disk"></span> </button>
+      <div class="form-group">
+        <label>Email: </label>
+        <input type="email" class="form-control" placeholder="{!! Auth::user()->email !!}" name="email">
+      </div>
+
+      <div class="form-group">
+        <label>Descrição: </label>
+        <textarea type="text" class="form-control" placeholder="{!! Auth::user()->descricao !!}" name="descricao"></textarea>
+      </div>
+      Salvar Alteração de Nome, Email e Descrição ->
+      <button type="submit" name="button" class="btn btn-success"> <span class="glyphicon glyphicon-floppy-disk"></span> </button>
+
+    </form>
   </div>
 
   <!--Alterar Senha-->
