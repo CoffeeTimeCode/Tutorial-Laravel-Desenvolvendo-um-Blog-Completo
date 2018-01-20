@@ -55,6 +55,11 @@ return [
             'visibility' => 'public',
         ],
 
+        'upl_avatar' => [
+            'driver' => 'local',
+            'root' => public_path().'/assets/avatar'
+        ],
+
         's3' => [
             'driver' => 's3',
             'key' => env('AWS_KEY'),

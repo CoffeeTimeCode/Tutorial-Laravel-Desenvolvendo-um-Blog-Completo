@@ -34,11 +34,16 @@
 <div class="row">
   <!--Alterar Avatar-->
   <div class="col-md-4">
-    <div class="thumbnail">
-      <img src="{{url('/avatar-icon.png')}}" alt="...">
-    </div>
-    Salvar Alteração do Avatar ->
-    <button type="submit" name="button" class="btn btn-success"> <span class="glyphicon glyphicon-floppy-disk"></span> </button>
+    <form class="" action="{!! url()->current() !!}" method="post" enctype="multipart/form-data">
+      {!! csrf_field() !!}
+      <input type="hidden" name="tipo" value="avatar">
+      <label for="avatar" class="thumbnail">
+        <img src="{{ Auth::user()->avatar }}" alt="...">
+      </label>
+      <input type="file" name="avatar" id="avatar" style="display:none;">
+      Salvar Alteração do Avatar ->
+      <button type="submit" name="button" class="btn btn-success"> <span class="glyphicon glyphicon-floppy-disk"></span> </button>
+    </form>
   </div>
 
   <!--Alterar N.E.D-->

@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Usuarios;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
+use Storage;
+
 /**Models**/
 use App\User;
 use Auth;
@@ -63,7 +65,16 @@ class UserController extends Controller
     {
       switch ($request->input('tipo')) {
         case 'avatar':
-          # code...
+            $request->validate([
+              'avatar' => 'required',
+            ]);
+
+            Storage::disk('upl_avatar')->put('avatar_'.Auth::user()->id.'.png', file_get_contents($request->file('avatar')));
+            $user = Auth::user();
+            $user->avatar = url('assets/avatar/'.'avatar_'.Auth::user()->id.'.png');
+            $user->save();
+
+            return back()->with('msg', 'Avatar alterado com Sucesso.');
           break;
 
         case 'n.e.d':
@@ -78,7 +89,7 @@ class UserController extends Controller
             $user->descricao = $request->input('descricao');
           }
           $user->save();
-          
+
           return back()->with('msg', 'Alteração realizada com Sucesso.');
           break;
 
