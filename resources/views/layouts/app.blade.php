@@ -52,6 +52,8 @@
                                 </a>
 
                                 <ul class="dropdown-menu">
+                                    <li><a href="{{ url('painel') }}">Painel</a></li>
+                                    <li><a href="{{ url('painel/configuracoes') }}">Configurações</a></li>
                                     <li>
                                         <a href="{{ route('logout') }}"
                                             onclick="event.preventDefault();
