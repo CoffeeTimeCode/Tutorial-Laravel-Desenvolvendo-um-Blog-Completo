@@ -37,5 +37,8 @@ Route::middleware(['auth'])->prefix('painel')->group(function () {
       Route::get('/listar-usuarios/{filtro?}','Usuarios\UserController@index');
 
       Route::get('/deletar-usuario/{id}','Usuarios\UserController@destroy');
+
+      Route::get('/tags','Usuarios\TagsController@index');
+      Route::post('/tags','Usuarios\TagsController@store');
     });
 });
