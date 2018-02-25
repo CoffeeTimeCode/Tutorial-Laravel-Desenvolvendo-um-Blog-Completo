@@ -40,5 +40,7 @@ Route::middleware(['auth'])->prefix('painel')->group(function () {
 
       Route::get('/tags','Usuarios\TagsController@index');
       Route::post('/tags','Usuarios\TagsController@store');
+      Route::post('/tags/editar','Usuarios\TagsController@update');
+      Route::get('/tags/deletar/{id}','Usuarios\TagsController@destroy');
     });
 });
