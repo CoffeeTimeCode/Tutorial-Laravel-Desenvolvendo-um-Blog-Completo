@@ -15,7 +15,10 @@ class TagsController extends Controller
 
     public function store(Request $request)
     {
-      if(is_null($request->input('tags'))){ return back();}
+      $request->validate([
+          'tags' => 'required|min:1',
+      ]);
+
       $temp_tags = explode(",",$request->input('tags'));
       foreach ($temp_tags as $key => $tag) {
         $nova_tag = new Tags;
@@ -23,21 +26,26 @@ class TagsController extends Controller
         $nova_tag->slug = str_slug($tag);
         $nova_tag->save();
       }
-      return redirect(url('painel/tags'));
+
+      return back()->with('mensagem', 'Tags criada com sucesso.');
     }
 
     public function update(Request $request)
     {
+      $request->validate([
+          'tag' => 'required|min:1',
+      ]);
+
       $tag = Tags::find($request->input('id'));
       $tag->nome = $request->input('tag');
       $tag->save();
 
-      return redirect(url('painel/tags'));
+      return back()->with('mensagem', 'Tags editada com sucesso.');;
     }
 
     public function destroy($id)
     {
       Tags::find($id)->delete();
-      return redirect(url('painel/tags'));
+      return back()->with('mensagem', 'Tags deletada com sucesso.');;
     }
 }

@@ -90,14 +90,16 @@
               @endif
               @if(Auth::user()->level>=1)
                 <!--<li class="list-group-item text-center">Usuário: Revisor</li>-->
+                <li class="list-group-item text-center"><h4>Posts</h4></li>
+                <li class="list-group-item"> <a href="{!! url('/painel/tags') !!}">-> Tags</a> </li>
+                <li class="list-group-item"> <a href="{!! url('/painel/categorias') !!}">-> Categorias</a> </li>
+                
               @endif
               @if(Auth::user()->level>=2)
                 <li class="list-group-item text-center"><h4>Usuários</h4></li>
                 <li class="list-group-item"> <a href="{!! url('/painel/criar-usuario') !!}">-> Criar Usuário</a> </li>
                 <li class="list-group-item"><a href="{!! url('/painel/listar-usuarios') !!}">-> Listar Usuários</a> </li>
-                <li class="list-group-item text-center"><h4>Posts</h4></li>
-                <li class="list-group-item"> <a href="{!! url('/painel/tags') !!}">-> Tags</a> </li>
-                <li class="list-group-item"> <a href="{!! url('/painel/categorias') !!}">-> Categorias</a> </li>
+
               @endif
             </ul>
           </div>

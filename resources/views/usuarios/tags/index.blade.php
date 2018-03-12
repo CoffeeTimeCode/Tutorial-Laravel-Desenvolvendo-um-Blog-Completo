@@ -7,20 +7,39 @@
 
 <div class="row">
   <div class="col-md-12">
+
+  @if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+  @endif
+
+  @if(session('mensagem'))
+  <div class="alert alert-success">{{session('mensagem')}}</div>
+  @endif
+
     <div class="panel panel-default">
       <div class="panel-heading">
         <h3 class="panel-title">Gerenciar Tags</h3>
       </div>
       <div class="panel-body">
-        <form class="" action="{{url()->current()}}" method="post">
-          {{csrf_field()}}
-          <div class="form-group">
-            <label>Tags</label>
-            <input type="text" class="form-control" name="tags">
-            <p class="help-block">Digite as tags separada por vírgula: exemplo: laravel,php</p>
-          </div>
-          <button type="submit" class="btn btn-success">Adicionar</button>
-        </form>
+        @if(Auth::user()->level >= 2)
+          <form class="" action="{{url()->current()}}" method="post">
+            {{csrf_field()}}
+            <div class="form-group">
+              <label>Tags</label>
+              <input type="text" class="form-control" name="tags">
+              <p class="help-block">Digite as tags separada por vírgula: exemplo: laravel,php</p>
+            </div>
+            <button type="submit" class="btn btn-success">Adicionar</button>
+          </form>
+        @else
+          <p>Você não tem permissão.</p>
+        @endif
       </div>
       <div class="panel-footer" style="padding:0px;">
         <table class="table">
@@ -36,8 +55,12 @@
               <td>{{$tag->nome}}</td>
               <td>{{$tag->created_at}}</td>
               <td>
-                <a onclick="editarTag('{{$tag->id}}','{{$tag->nome}}')" class="btn btn-sm btn-warning">Editar</a>
-                <a href="{{url('painel/tags/deletar/'.$tag->id)}}" class="btn btn-sm btn-danger">Deletar</a>
+                @if(Auth::user()->level >= 2)
+                  <a onclick="editarTag('{{$tag->id}}','{{$tag->nome}}')" class="btn btn-sm btn-warning">Editar</a>
+                  <a href="{{url('painel/tags/deletar/'.$tag->id)}}" class="btn btn-sm btn-danger">Deletar</a>
+                @else
+                  Você não tem permissão.
+                @endif
               </td>
             </tr>
             @endforeach
