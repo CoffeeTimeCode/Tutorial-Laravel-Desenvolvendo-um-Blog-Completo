@@ -48,5 +48,8 @@ Route::middleware(['auth'])->prefix('painel')->group(function () {
       Route::post('/tags','Usuarios\TagsController@store');
       Route::post('/tags/editar','Usuarios\TagsController@update');
       Route::get('/tags/deletar/{id}','Usuarios\TagsController@destroy');
+
+      Route::get('/upload-arquivos', 'Usuarios\ArquivosController@index');
+      Route::post('/upload-arquivos', 'Usuarios\ArquivosController@store');
     });
 });

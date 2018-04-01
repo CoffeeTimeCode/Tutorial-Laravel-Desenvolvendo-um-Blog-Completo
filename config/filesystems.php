@@ -60,6 +60,11 @@ return [
             'root' => public_path().'/assets/avatar'
         ],
 
+        'upl_arquivos' => [
+            'driver' => 'local',
+            'root' => public_path().'/assets/arquivos'
+        ],
+
         's3' => [
             'driver' => 's3',
             'key' => env('AWS_KEY'),

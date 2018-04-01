@@ -3,6 +3,9 @@
 @section('content')
 <ul class="list-group">
   <li class="list-group-item"><h4 class="text-center">Categorias</h3></li>
+    <li class="list-group-item">
+      <a href="{!! url('/painel') !!}">Painel</a> -> Categorias
+    </li>
 </ul>
 
 <div class="row">

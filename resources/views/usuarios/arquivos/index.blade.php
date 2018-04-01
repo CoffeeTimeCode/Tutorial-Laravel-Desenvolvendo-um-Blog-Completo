@@ -2,9 +2,9 @@
 
 @section('content')
 <ul class="list-group">
-  <li class="list-group-item"><h4 class="text-center">Tags</h3></li>
+  <li class="list-group-item"><h4 class="text-center">Upload de Arquivos</h3></li>
     <li class="list-group-item">
-      <a href="{!! url('/painel') !!}">Painel</a> -> Tags
+      <a href="{!! url('/painel') !!}">Painel</a> -> upload de arquivos
     </li>
 </ul>
 
@@ -31,12 +31,14 @@
       </div>
       <div class="panel-body">
         @if(Auth::user()->level >= 2)
-          <form class="" action="{{url()->current()}}" method="post">
+          <form class="" action="{{url()->current()}}" method="post" enctype="multipart/form-data">
             {{csrf_field()}}
             <div class="form-group">
-              <label>Tags</label>
-              <input type="text" class="form-control" name="tags">
-              <p class="help-block">Digite as tags separada por vírgula: exemplo: laravel,php</p>
+              <label>Nome</label>
+              <input type="text" class="form-control" name="nome">
+            </div>
+            <div class="form-group">
+              <input type="file" name="arquivo">
             </div>
             <button type="submit" class="btn btn-success">Adicionar</button>
           </form>
@@ -49,18 +51,18 @@
           <tr>
             <th>ID</th>
             <th>Nome</th>
-            <th>Data</th>
+            <th>Tipo</th>
             <th></th>
           </tr>
-            @foreach($tags as $tag)
+            @foreach($arquivos as $arquivo)
             <tr>
-              <td>{{$tag->id}}</td>
-              <td>{{$tag->nome}}</td>
-              <td>{{$tag->created_at}}</td>
+              <td>{{$arquivo->id}}</td>
+              <td>{{$arquivo->nome}}</td>
+              <td>{{$arquivo->tipo}}</td>
               <td>
                 @if(Auth::user()->level >= 2)
-                  <a onclick="editarTag('{{$tag->id}}','{{$tag->nome}}')" class="btn btn-sm btn-warning">Editar</a>
-                  <a href="{{url('painel/tags/deletar/'.$tag->id)}}" class="btn btn-sm btn-danger">Deletar</a>
+                  <a onclick="" class="btn btn-sm btn-warning">Editar</a>
+                  <a href="" class="btn btn-sm btn-danger">Deletar</a>
                 @else
                   Você não tem permissão.
                 @endif
